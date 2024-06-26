@@ -12,7 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: {},
         password: {},
       },
-      authorize: async () => {
+      authorize: () => {
         const user = null
  
         // logic to salt and hash password
