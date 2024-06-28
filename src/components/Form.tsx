@@ -23,49 +23,37 @@ const formSchema = z.object({
   content: z.string().min(2, {
     message: "Content must be at least 2 characters.",
   }),
-  user_id: z.string().optional()
- 
 });
 export type MyFormFields = z.infer<typeof formSchema>;
 export default function ProfileForm() {
-
-
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-     
       title: "",
       content: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-     
-
-   console.log(values)
-
-
+    return values;
   };
-  console.log(form.formState.errors);
+  
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((data) => onSubmit(data))}
         className="space-y-4 w-[60%]"
-
-
       >
         <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input autoFocus={true} placeholder="Name" {...field} />
+                <Input autoFocus={true} placeholder="title" {...field} />
               </FormControl>
-              <FormDescription>Please provide your title.</FormDescription>
+
               <FormMessage />
             </FormItem>
           )}
@@ -75,17 +63,17 @@ export default function ProfileForm() {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Content</FormLabel>
               <FormControl>
-                <Input autoFocus={true} placeholder="Name" {...field} />
+                <Input autoFocus={true} placeholder="content" {...field} />
               </FormControl>
-              <FormDescription>Please provide your title.</FormDescription>
+
               <FormMessage />
             </FormItem>
           )}
         />
-        
-        <Button type="submit" >Submit</Button>
+
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
